@@ -22,9 +22,12 @@
 
 {% block js_script %}
 <script>    
-    // setup chat scoket
+    // Determinar si usar ws:// o wss:// basado en el esquema de la página actual
+    const ws_scheme = window.location.protocol === "https:" ? "wss://" : "ws://";
+    
+    // setup chat socket
     const chatSocket = new WebSocket(
-        'ws://'
+        ws_scheme
         + window.location.host
         + '/ws/chat/public_room/'
     );
